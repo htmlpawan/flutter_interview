@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:intl/intl.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -10,7 +11,10 @@ class MydocmateViewModel = _MydocmateViewModel with _$MydocmateViewModel;
 abstract class _MydocmateViewModel with Store {
   @observable
   bool switchValue = true;
-
+  
+  @observable
+  String getDayFormat =  DateFormat.E().format(DateTime.now());
+   
   @observable
   int stepSet = 2843;
 
@@ -21,7 +25,7 @@ abstract class _MydocmateViewModel with Store {
   int caloriesSet = 42;
 
   @action
-  void setStepPreferences() async {
+  Future<void> setStepPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final data = stepsModel(
         steps: stepSet, activity: activitySet, calories: caloriesSet);

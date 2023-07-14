@@ -25,6 +25,22 @@ mixin _$MydocmateViewModel on _MydocmateViewModel, Store {
     });
   }
 
+  late final _$getDayFormatAtom =
+      Atom(name: '_MydocmateViewModel.getDayFormat', context: context);
+
+  @override
+  String get getDayFormat {
+    _$getDayFormatAtom.reportRead();
+    return super.getDayFormat;
+  }
+
+  @override
+  set getDayFormat(String value) {
+    _$getDayFormatAtom.reportWrite(value, super.getDayFormat, () {
+      super.getDayFormat = value;
+    });
+  }
+
   late final _$stepSetAtom =
       Atom(name: '_MydocmateViewModel.stepSet', context: context);
 
@@ -73,10 +89,20 @@ mixin _$MydocmateViewModel on _MydocmateViewModel, Store {
     });
   }
 
+  late final _$setStepPreferencesAsyncAction =
+      AsyncAction('_MydocmateViewModel.setStepPreferences', context: context);
+
+  @override
+  Future<void> setStepPreferences() {
+    return _$setStepPreferencesAsyncAction
+        .run(() => super.setStepPreferences());
+  }
+
   @override
   String toString() {
     return '''
 switchValue: ${switchValue},
+getDayFormat: ${getDayFormat},
 stepSet: ${stepSet},
 activitySet: ${activitySet},
 caloriesSet: ${caloriesSet}

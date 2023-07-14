@@ -21,6 +21,16 @@ class MyApp extends StatelessWidget {
         primary: Colors.blue,
       ),
       ),
+      builder: (context, child) {
+        // Define a scale factor for the text
+        var textScaleFactor = 1.0;
+
+        // Wrap the child with a MediaQuery widget to apply the scale factor
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(textScaleFactor: textScaleFactor),
+          child: child!,
+        );
+      },
     );
   }
 }

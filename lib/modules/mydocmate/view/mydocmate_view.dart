@@ -5,6 +5,7 @@ import 'package:flutter_interview/modules/mydocmate/view_model/mydocmate_view_mo
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:health/health.dart';
 
 class MydocmateView extends StatefulWidget {
   const MydocmateView({super.key});
@@ -19,6 +20,58 @@ class _MydocmateViewState extends State<MydocmateView> {
   String get km => 'assets/svgs/km.svg';
   String get calories => 'assets/svgs/calories.svg';
   String get speedkm => 'assets/svgs/speed-km.svg';
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  int getSteps = 0;
+
+  HealthFactory health = HealthFactory();
+
+  Future fetchStepData() async{
+   int? steps;
+
+  // create a HealthFactory for use in the app, choose if HealthConnect should be used or not
+  HealthFactory health = HealthFactory(useHealthConnectIfAvailable: true);
+
+  // define the types to get
+  var types = [
+    HealthDataType.STEPS,
+    HealthDataType.DISTANCE_DELTA,
+  ];
+
+  // request permissions to write steps and blood glucose
+  var permissions = [
+      HealthDataAccess.READ_WRITE,
+      HealthDataAccess.READ_WRITE
+  ];
+ bool requested = await health.requestAuthorization(types, permissions: permissions);
+
+  // write steps and blood glucose
+  var now = DateTime.now();
+  
+  var midnight = DateTime(now.year, now.month, now.day);
+   if(requested){
+    try {
+      // get the number of steps for today
+      steps = await health.getTotalStepsInInterval(midnight, now);
+    } catch(error){
+         print("Caught exception");
+    }
+
+    print('Total number of steps: $steps');
+
+    setState(() {
+      getSteps = (steps == null) ? 0 : steps;
+      viewModel.stepSet = getSteps;
+    });
+   }else{
+    print("Authorization not granted");
+   }
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -55,7 +108,7 @@ class _MydocmateViewState extends State<MydocmateView> {
                               color: Color(0xff93b7d1),
                               width: 1.5, // Underline thickness
                             ))),
-                            child: const Text(
+                            child:  const Text(
                               'Steps',
                               style: TextStyle(
                                   color: Color(0xff93b7d1),
@@ -87,6 +140,9 @@ class _MydocmateViewState extends State<MydocmateView> {
                           GestureDetector(
                             onTap: () {
                               viewModel.switchValue = !viewModel.switchValue;
+                              if(viewModel.switchValue != true){
+                                fetchStepData();
+                              }
                             },
                             child: Container(
                               width: 50,
@@ -269,21 +325,23 @@ class _MydocmateViewState extends State<MydocmateView> {
                         ],
                       ),
                       const SizedBox(height: 20,),
-                      BarChartSample4(step: viewModel.stepSet)
+                      BarChartSample4(step: viewModel.stepSet, getDayFormat:viewModel.getDayFormat)
                     ],
                   ),
                 ));
           }
         ),
       ),
-    
+     
       floatingActionButton: Observer(
         builder: (context) {
           return InkWell(
             onTap: () => {
               showCustomDialog(context, viewModel),
             },
-            child: Container(
+            child: 
+            viewModel.switchValue ?
+            Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 20),
               decoration: const BoxDecoration(
@@ -298,7 +356,7 @@ class _MydocmateViewState extends State<MydocmateView> {
                 style: TextStyle(
                     fontSize: 20, color: Colors.white, fontWeight: FontWeight.w500),
               ),
-            ),
+            ) : const SizedBox(height: 0,),
           );
         }
       ),

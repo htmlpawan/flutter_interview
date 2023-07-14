@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "725281628358",
+    "project_id": "plasma-inquiry-392606",
+    "storage_bucket": "plasma-inquiry-392606.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:725281628358:android:225dd4301b3a88ab13b7c7",
+        "android_client_info": {
+          "package_name": "com.example.flutter_interview"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "725281628358-pmumk6u04vdhg7td38hfrqvud96b31fm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutter_interview",
+            "certificate_hash": "18f603c30dd2dc2f0837832741714dd1c4565c16"
+          }
+        },
+        {
+          "client_id": "725281628358-n7h1slfv66416fevvl2sbqj808bn9bfk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDG2vkgXvEgJ0AQs_gp1ToOhCPVK3R4uYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "725281628358-n7h1slfv66416fevvl2sbqj808bn9bfk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

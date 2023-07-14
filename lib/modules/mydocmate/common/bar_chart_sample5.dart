@@ -18,8 +18,9 @@ extension ColorExtension on Color {
 }
 
 class BarChartSample4 extends StatefulWidget {
-  BarChartSample4({Key? key, this.step}) : super(key: key);
+  BarChartSample4({Key? key, this.step, this.getDayFormat}) : super(key: key);
  final int? step;
+ final String? getDayFormat;
 
   final Color dark = AppColors.contentColorCyan.darken(60);
   final Color normal = AppColors.contentColorCyan.darken(30);
@@ -132,7 +133,7 @@ class BarChartSample4State extends State<BarChartSample4> {
                   show: false,
                 ),
                 groupsSpace: barsSpace,
-                barGroups: getData(barsWidth, barsSpace, double.parse(widget.step.toString())),
+                barGroups: getData(barsWidth, barsSpace, double.parse(widget.step.toString()), widget.getDayFormat),
               ),
             );
           },
@@ -164,15 +165,14 @@ class BarChartSample4State extends State<BarChartSample4> {
         ),
       );
 
-  List<BarChartGroupData> getData(double barsWidth, double barsSpace, step) {
-   var value =  DateFormat.E().format(DateTime.now());
+  List<BarChartGroupData> getData(double barsWidth, double barsSpace, step, getDayFormat) {
     return [
       BarChartGroupData(
         x: 0,
         barsSpace: barsSpace,
         barRods: [
           BarChartRodData(
-            toY: value=='Mon'? step: 0,
+            toY: getDayFormat=='Mon'? step: 0,
             borderRadius: BorderRadius.zero,
             width: barsWidth,
           ),
@@ -184,7 +184,7 @@ class BarChartSample4State extends State<BarChartSample4> {
         barsSpace: barsSpace,
         barRods: [
           BarChartRodData(
-            toY: value=='Tue'? step: 0,
+            toY: getDayFormat=='Tue'? step: 0,
             borderRadius: BorderRadius.zero,
             width: barsWidth,
           ),
@@ -196,7 +196,7 @@ class BarChartSample4State extends State<BarChartSample4> {
         barsSpace: barsSpace,
         barRods: [
           BarChartRodData(
-            toY: value=='Wed'? step: 0,
+            toY: getDayFormat=='Wed'? step: 0,
             borderRadius: BorderRadius.zero,
             width: barsWidth,
           ),
@@ -208,7 +208,7 @@ class BarChartSample4State extends State<BarChartSample4> {
         barsSpace: barsSpace,
         barRods: [
           BarChartRodData(
-            toY: value=='Thu'? step: 0,
+            toY: getDayFormat=='Thu'? step: 0,
             borderRadius: BorderRadius.zero,
             width: barsWidth,
           ),
@@ -220,7 +220,7 @@ class BarChartSample4State extends State<BarChartSample4> {
         barsSpace: barsSpace,
         barRods: [
           BarChartRodData(
-            toY: value=='Fri'? step: 0,
+            toY: getDayFormat=='Fri'? step: 0,
             borderRadius: BorderRadius.zero,
             width: barsWidth,
           ),
@@ -232,7 +232,7 @@ class BarChartSample4State extends State<BarChartSample4> {
         barsSpace: barsSpace,
         barRods: [
           BarChartRodData(
-            toY: value=='Sat'? step: 0,
+            toY: getDayFormat=='Sat'? step: 0,
             borderRadius: BorderRadius.zero,
             width: barsWidth,
           ),
@@ -244,7 +244,7 @@ class BarChartSample4State extends State<BarChartSample4> {
         barsSpace: barsSpace,
         barRods: [
           BarChartRodData(
-            toY: value=='Sun'? step: 0,
+            toY: getDayFormat=='Sun'? step: 0,
             borderRadius: BorderRadius.zero,
             width: barsWidth,
           ),
