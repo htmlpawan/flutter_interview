@@ -205,9 +205,9 @@ class _MydocmateViewState extends State<MydocmateView> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                              width: 110,
+                             width: 105,
                               padding: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 10),
+                                  vertical: 8, horizontal: 8),
                               decoration: const BoxDecoration(
                                   color: Color(0xfffdd6c7),
                                   borderRadius:
@@ -233,9 +233,9 @@ class _MydocmateViewState extends State<MydocmateView> {
                                 ],
                               )),
                           Container(
-                              width: 110,
+                             width: 105,
                               padding: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 10),
+                                  vertical: 8, horizontal: 8),
                               decoration: const BoxDecoration(
                                   color: Color(0xff93b7d1),
                                   borderRadius:
@@ -266,9 +266,9 @@ class _MydocmateViewState extends State<MydocmateView> {
                                 ],
                               )),
                           Container(
-                            width: 110,
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 10),
+                            width: 105,
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 8, horizontal: 8),
                             decoration: const BoxDecoration(
                                 color: Color(0xffc9eee6),
                                 borderRadius:

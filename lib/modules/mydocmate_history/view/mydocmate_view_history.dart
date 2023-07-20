@@ -31,11 +31,12 @@ var now = DateTime.now();
     // TODO: implement initState
     super.initState();
     var startFrom = now.subtract(Duration(days: now.weekday));
-    var list = List.generate(6, (i) => {
+    var list = List.generate(7, (i) => {
             "dayName": DateFormat.E().format(DateTime(now.year, now.month, startFrom.add(Duration(days: i)).day)),
             "dateValue": startFrom.add(Duration(days: i)).day,
       });
     weekData = list;
+    print(list);
     fetchStepData(viewModel.dateSelect);
   }
 
@@ -165,7 +166,7 @@ var now = DateTime.now();
                           ),
                           const SizedBox(height: 20,),
                          SizedBox(
-                          height: 80,
+                          height: 70,
                            child: ListView.builder(
                                 shrinkWrap: true,
                                 scrollDirection: Axis.horizontal,
@@ -181,10 +182,10 @@ var now = DateTime.now();
                                           viewModel.getDayFormat = weekData?[index]['dayName'];
                                           },
                                         child: Container(
-                                        width: 50,
+                                        width: 40,
                                         alignment: Alignment.center,
-                                        padding: const EdgeInsets.all(8),
-                                          margin: const EdgeInsets.only(right: 10),
+                                        padding: const EdgeInsets.all(6),
+                                          margin: const EdgeInsets.only(right: 6),
                                           decoration:  BoxDecoration(
                                           color: viewModel.dateSelect==weekData?[index]['dateValue'] ?
                                           const Color(0xff93b7d1):const Color(0xfffdd6c7),
@@ -213,9 +214,9 @@ var now = DateTime.now();
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                              width: 110,
+                              width: 105,
                               padding: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 10),
+                                  vertical: 8, horizontal: 8),
                               decoration: const BoxDecoration(
                                   color: Color(0xfffdd6c7),
                                   borderRadius:
@@ -240,9 +241,9 @@ var now = DateTime.now();
                               )),
                          
                           Container(
-                              width: 110,
+                              width: 105,
                               padding: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 10),
+                                  vertical: 8, horizontal: 8),
                               decoration: const BoxDecoration(
                                   color: Color(0xff93b7d1),
                                   borderRadius:
@@ -273,9 +274,9 @@ var now = DateTime.now();
                                 ],
                               )),
                           Container(
-                            width: 110,
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 10),
+                            width: 105,
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 8, horizontal: 8),
                             decoration: const BoxDecoration(
                                 color: Color(0xffc9eee6),
                                 borderRadius:

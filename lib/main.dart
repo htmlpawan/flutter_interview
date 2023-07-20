@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       ),
       builder: (context, child) {
         // Define a scale factor for the text
-        var textScaleFactor = 1.0;
+        var textScaleFactor = 0.8;
 
         // Wrap the child with a MediaQuery widget to apply the scale factor
         return MediaQuery(

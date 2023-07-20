@@ -117,7 +117,7 @@ class _BarChart extends StatelessWidget {
         show: true,
       );
 
-  LinearGradient get _barsGradient => LinearGradient(
+  LinearGradient get _barsGradient => const LinearGradient(
         colors: [
           Colors.green,
           Colors.blue,
